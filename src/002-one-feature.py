@@ -1,8 +1,7 @@
-# baseline: constant 0.5
-# kaggle score 0.5
+# amount > $125
+# kaggle score 0.5189
 
 import sys  # noqa
-import numpy as np
 import pandas as pd
 from time import time
 from sklearn.metrics import roc_auc_score
@@ -23,15 +22,17 @@ start_time = time()
 
 target = 'isFraud'
 
-prediction = 0
+# add prdict to train and calc overall score
 
-train['predicted'] = prediction
+train['predicted'] = train.TransactionAmt.apply(lambda x: 1 if x > 125 else 0)
 
 score = roc_auc_score(train[target], train.predicted)
 print(score)
 
-test[target] = 0.5
+# set same prediction in test target
+test[target] = test.TransactionAmt.apply(lambda x: 1 if x > 125 else 0)
 
+# save to submission
 predictions = test[['TransactionID', target]]
 
 predictions.to_csv('submission.csv', index=False)
