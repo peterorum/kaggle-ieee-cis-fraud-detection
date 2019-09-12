@@ -1,41 +1,35 @@
-# baseline: constant price 200000
-# kaggle score 0.46217
+# baseline: constant prob 0.5
+# kaggle score
 
 import sys  # pylint: disable=unused-import
 import numpy as np
 import pandas as pd
-from sklearn.metrics import mean_squared_error
 from time import time
 
 import os
 
 is_kaggle = os.environ['HOME'] == '/tmp'
 
-zipext = ''  # if is_kaggle else '.zip'
+zipext = '' if is_kaggle else '.zip'
 
 # load data
-train = pd.read_csv(f'../input/train.csv{zipext}')
-test = pd.read_csv(f'../input/test.csv{zipext}')
+train = pd.read_csv(f'../input/train_transaction.csv{zipext}')
+test = pd.read_csv(f'../input/test_transaction.csv{zipext}')
 
 #-------- main
 
 start_time = time()
 
-target = 'SalePrice'
+target = 'isFraud'
 
-result = 200000
+result = 0.5
 
-train['predicted'] = result
-
-score = np.sqrt(mean_squared_error(train[target], train.predicted))
-print('score', score)
+train['isFraud'] = result
 
 test[target] = result
 
-# print(test.head())
-# print(test.describe())
 
-predictions = test[['Id', target]]
+predictions = test[['TransactionID', target]]
 
 predictions.to_csv('submission.csv', index=False)
 
