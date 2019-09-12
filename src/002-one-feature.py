@@ -1,4 +1,5 @@
 # amount > $125
+# local score 0.534
 # kaggle score 0.5189
 
 import sys  # noqa
