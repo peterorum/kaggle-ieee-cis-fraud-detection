@@ -1,6 +1,6 @@
 # feature importance
-# local score
-# kaggle score
+# local score 0.9253435638419156
+# kaggle score 0.8787
 
 import os
 import sys  # noqa
@@ -33,7 +33,7 @@ last_time = time()
 def timer():
     global last_time
 
-    print(f'{((time() - last_time) / 60):.1f} mins\n')
+    print(f'{((time() - last_time) / 60):.1f}, {((time() - start_time) / 60):.1f} mins\n')
 
     last_time = time()
 
@@ -563,15 +563,15 @@ def run():
 
     train, test = replace_missing_values(train, test, unique_id, target)
 
-    train, test = get_column_differences(train, test, unique_id, target)
+    # train, test = get_column_differences(train, test, unique_id, target)
 
-    train, test = get_statistical_features(train, test, unique_id, target)
+    # train, test = get_statistical_features(train, test, unique_id, target)
 
-    train, test = get_custom_features(train, test, unique_id, target)
+    # train, test = get_custom_features(train, test, unique_id, target)
 
-    train, test, most_important_cols = get_feature_importance(train, test, unique_id, target, True)
+    # train, test, most_important_cols = get_feature_importance(train, test, unique_id, target, True)
 
-    train, test = get_arithmetic_features(train, test, unique_id, target, most_important_cols)
+    # train, test = get_arithmetic_features(train, test, unique_id, target, most_important_cols)
 
     train, test = get_categorical_data(train, test, unique_id, target)
 
