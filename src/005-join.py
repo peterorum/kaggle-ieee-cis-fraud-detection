@@ -1,6 +1,6 @@
 # feature importance
-# local score 0.9355670019874779
-# kaggle score 0.8967
+# training score 0.9379
+# kaggle score 0.8894
 
 import os
 import sys  # noqa
@@ -576,7 +576,7 @@ def run():
 
     train, test = get_column_differences(train, test, unique_id, target)
 
-    train, test = get_statistical_features(train, test, unique_id, target)
+    # train, test = get_statistical_features(train, test, unique_id, target)
 
     train, test = get_custom_features(train, test, unique_id, target)
 
